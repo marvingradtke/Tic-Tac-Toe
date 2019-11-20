@@ -1,9 +1,20 @@
 import React from "react";
 import Square from "./Square";
 import { calculateWinner } from "../utils/helpers";
+import Status from "./Status";
+import styled from "@emotion/styled";
 
-export default function Board() {
-  const [squares, setSquares] = React.useState(Array(9).fill(null));
+const Box = styled.div`
+  width: ${props => 50 * Math.sqrt(props.size)}px;
+
+  > * {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+export default function Board({ gameSize }) {
+  const [squares, setSquares] = React.useState(Array(gameSize).fill(null));
   const [xIsNext, setXIsNext] = React.useState(true);
 
   const winner = calculateWinner(squares);
@@ -34,8 +45,8 @@ export default function Board() {
 
   return (
     <div>
-      <div className="status">{status}</div>
-      <div className="board-row">
+      <Status>{status}</Status>
+      <Box size={gameSize}>
         <Square
           value={squares[0]}
           onClick={() => {
@@ -54,8 +65,7 @@ export default function Board() {
             handleClick(2);
           }}
         />
-      </div>
-      <div className="board-row">
+
         <Square
           value={squares[3]}
           onClick={() => {
@@ -74,8 +84,7 @@ export default function Board() {
             handleClick(5);
           }}
         />
-      </div>
-      <div className="board-row">
+
         <Square
           value={squares[6]}
           onClick={() => {
@@ -94,7 +103,7 @@ export default function Board() {
             handleClick(8);
           }}
         />
-      </div>
+      </Box>
     </div>
   );
 }

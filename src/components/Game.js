@@ -1,16 +1,17 @@
 import React from "react";
 import Board from "./Board";
+import styled from "@emotion/styled";
+
+const FlexRow = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+`;
 
 export default function Game() {
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board />
-      </div>
-      <div className="game-info">
-        <div>{/* status */}</div>
-        <ol>{/* TODO */}</ol>
-      </div>
-    </div>
+    <FlexRow>
+      <Board gameSize={9} />
+    </FlexRow>
   );
 }
