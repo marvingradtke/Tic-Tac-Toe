@@ -12,6 +12,7 @@ export default function Game() {
   return (
     <FlexRow>
       <Board gameSize={9} />
+      <Board gameSize={16} />
     </FlexRow>
   );
 }
